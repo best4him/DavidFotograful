@@ -7,7 +7,8 @@ angular.module('acrawlerApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'timer'
+  'timer',
+  'acrawlerApp.dashboard'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -50,6 +51,10 @@ angular.module('acrawlerApp', [
         if (next.authenticate && !loggedIn) {
           event.preventDefault();
           $location.path('/login');
+          //$rootScope.$apply(function() {
+          //  $location.path('/login');
+          //});
+
         }
       });
     });

@@ -1,0 +1,28 @@
+.navbar {
+ border-radius: 0px;
+}
+.hide-responsive {
+  display: none !important;
+}
+@media (min-width: 768px) {
+  .navbar {
+    z-index: 1000;
+
+    width: 100%;
+  }
+  .hide-responsive {
+    display: inline !important;
+  }
+}
+.navbar-nav {
+  color:white !important;
+  margin-left: 24px;
+}
+.navbar-icon {
+  margin-right:5px;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  color:white !important;
+  background-color: transparent;
+
+}
