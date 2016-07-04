@@ -8,7 +8,8 @@ angular.module('acrawlerApp', [
   'ui.router',
   'ui.bootstrap',
   'timer',
-  'acrawlerApp.dashboard'
+  'acrawlerApp.dashboard',
+  'ncy-angular-breadcrumb'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
