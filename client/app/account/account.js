@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acrawlerApp')
+angular.module('davidFotograful')
   .config(function ($stateProvider) {
     $stateProvider
       .state('login', {

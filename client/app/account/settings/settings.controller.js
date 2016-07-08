@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acrawlerApp')
+angular.module('davidFotograful')
   .controller('SettingsCtrl', function ($scope, User, Auth) {
     $scope.errors = {};
 

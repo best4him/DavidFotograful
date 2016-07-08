@@ -6,7 +6,7 @@
   'use strict';
 
   angular
-    .module('acrawlerApp.dashboard')
+    .module('davidFotograful.dashboard')
     .controller('postsController', postsController);
 
   postsController.$inject = ['$scope', '$state'];

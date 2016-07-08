@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acrawlerApp')
+angular.module('davidFotograful')
   .controller('SignupCtrl', function ($scope, Auth, $location) {
     $scope.user = {};
     $scope.errors = {};

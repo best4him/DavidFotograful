@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acrawlerApp', [
+angular.module('davidFotograful', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -8,8 +8,9 @@ angular.module('acrawlerApp', [
   'ui.router',
   'ui.bootstrap',
   'timer',
-  'acrawlerApp.dashboard',
-  'ncy-angular-breadcrumb'
+  'davidFotograful.dashboard',
+  'ncy-angular-breadcrumb',
+  'ui.select'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -44,7 +45,11 @@ angular.module('acrawlerApp', [
       }
     };
   })
-
+  .config(function(uiSelectConfig) {
+  uiSelectConfig.theme = 'bootstrap';
+  uiSelectConfig.resetSearchInput = true;
+  uiSelectConfig.appendToBody = true;
+})
   .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {

@@ -1,1 +1,78 @@
-<div>New  Post</div>
+<h2 class="no-top-margin">Add New Post</h2>
+<div class="container">
+  <form class="form-horizontal" name="newPostForm" ng-submit="savePost(newPostForm)" role="form" novalidate>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="title">Title*:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="title" name="title" placeholder="Enter post's title" required
+               ng-model="newPost.title"
+               ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 350, 'blur': 1 } }">
+        <p class="help-block"
+           ng-show="newPostForm.title.$error.required && submitted">
+          Please enter title for your post.
+        </p>
+        <div class="row grey-color below-input-post">
+          <div class="" ng-show="newPost.permLink.length > 0">
+            <span>Permalink: </span>
+            <span ng-bind="newPost.permLink"></span>
+            <span ng-show="permalinkStates.isPermalinkValid" class="glyphicon glyphicon-ok margin-left-5"></span>
+            <span ng-show="permalinkStates.isPermalinkValid === false"
+                  class="glyphicon glyphicon-remove margin-left-5"></span>
+            <span ng-show="permalinkStates.loading" class="fa fa-spinner fa-pulse fa-fw"></span>
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="text-danger" ng-show="permalinkStates.error" ng-bind="permalinkStates.error"></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="category">Category:</label>
+      <div class="col-sm-8">
+        <!--<input type="text" class="form-control" id="category" placeholder="Enter post's category">-->
+        <div class="input-container-medium">
+          <ui-select multiple sortable="true" id="category" ng-model="ctrl" class="form-control"
+                     title="Choose a person">
+            <ui-select-match placeholder="Select or search a person in the list...">{{$select.selected[0].name}}
+            </ui-select-match>
+            <ui-select-choices repeat="item in people | filter: $select.search">
+              <div ng-bind-html="item.name | highlight: $select.search"></div>
+              <small ng-bind-html="item.email | highlight: $select.search"></small>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+        <span class="btn btn-default btn-sm pull-right" style="display: inline-block; width: 66px" id="btn-add-new" ng-click="openAddNewCategoryModal()">Add new</span>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="tags">Tags:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="tags" placeholder="Enter post's tags">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="synopsis">Synopsis:</label>
+      <div class="col-sm-8">
+        <textarea rows="12" class="form-control" id="synopsis" placeholder="Enter post's synopsis"></textarea>
+      </div>
+    </div>
+    <div class="form-group has-error">
+      <p class="help-block" ng-show="!newPostForm.$valid &&  submitted">Please provide all required information before
+        saving the new post!</p>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-inverse">
+        Cancel
+      </button>
+      <button class="btn btn-inverse" type="submit">
+        Save
+      </button>
+      <button class="btn btn-inverse">
+        Publish
+      </button>
+    </div>
+  </form>
+</div>

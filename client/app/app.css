@@ -38,4 +38,17 @@
     padding: 0.2em 0;
 }
 
-
+.margin-left-5 {
+  margin-left: 5px;
+}
+.no-top-margin {
+  margin-top: 0 !important;
+}
+.no-display-large-screen {
+  display: initial;
+}
+@media(min-width:768px) {
+ .no-display-large-screen {
+   display: none;
+ }
+}

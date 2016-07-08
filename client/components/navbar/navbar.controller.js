@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acrawlerApp')
+angular.module('davidFotograful')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [
       {

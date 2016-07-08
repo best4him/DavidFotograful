@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acrawlerApp')
+angular.module('davidFotograful')
   .controller('MainCtrl', function ($scope, $http, socket, Auth) {
     $scope.awesomeThings = [];
     $scope.isLoggedIn = Auth.isLoggedIn;

@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('acrawlerApp')
+angular.module('davidFotograful')
   .directive('mongooseError', function () {
     return {
       restrict: 'A',

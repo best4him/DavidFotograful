@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acrawlerApp')
+angular.module('davidFotograful')
   .controller('AdminCtrl', function ($scope, $http, Auth, User) {
     //$scope.toggleLeftBar = false;
     //  $scope.awesomeThings = [];

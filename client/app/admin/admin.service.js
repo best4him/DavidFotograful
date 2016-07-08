@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('acrawlerApp')
+        .module('davidFotograful')
         .factory('adminFactory', adminFactory);
 
     adminFactory.$inject = ['$http'];

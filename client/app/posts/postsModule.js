@@ -8,7 +8,12 @@ angular
       .state('admin.newPost', {
         url: '/new-post',
         templateUrl: 'app/posts/newPost/newPost.html',
-        controller: 'NewPostController'
+        controller: 'NewPostController',
+        ncyBreadcrumb: {
+          label: 'New Post',
+          parent: 'admin.posts'
+        },
+        authenticate: true
       });
 
   });

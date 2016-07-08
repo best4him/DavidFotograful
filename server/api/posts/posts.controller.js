@@ -63,6 +63,20 @@ exports.destroy = function(req, res) {
   });
 };
 
+exports.verifyPermLink = function (req, res) {
+  var permalink = req.query.permalink;
+  if (!permalink) {
+    return res.status(200).send({isValid: false})
+  }
+  Posts.findOne({permalink: permalink}, function(err, posts) {
+    if(err) { return handleError(res, err); }
+    if (!posts) {
+      return res.status(200).send({isValid: true})
+    }
+    return res.status(200).send({isValid: false})
+  });
+};
+
 function handleError(res, err) {
   return res.status(500).send(err);
 }
