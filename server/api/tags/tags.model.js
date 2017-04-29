@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var ThingSchema = new Schema({
-  name: String
+  name: {type: String, unique: true, required: true}
 });
 
-module.exports = mongoose.model('Thinks', ThingSchema);
+module.exports = mongoose.model('Tags', ThingSchema);

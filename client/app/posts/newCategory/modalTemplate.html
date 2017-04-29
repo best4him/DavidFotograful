@@ -1,35 +1,68 @@
 <div class="modal-header">
   <h3 class="modal-title">Categories management</h3>
 </div>
-<div class="modal-body" style="min-height: 500px">
-  <div class="container">
-    <div class="col-sm-4">
+<div class="modal-body" style="min-height: 400px">
+  <div class="row">
+    <div class="col-sm-5">
       <h3>Add new Category</h3>
       <form name="newCategoryForm" ng-submit="addNewCategory(newCategoryForm)" role="form" novalidate>
         <div class="form-group">
           <label for="categoryName" class="control-label">Name:</label>
-          <input type="text" name="categoryName" class="form-control" id="categoryName" placeholder="Type category's name" required
-          ng-model="newCategory.name">
+          <input type="text" name="categoryName" class="form-control" id="categoryName"
+                 placeholder="Type category's name" required
+                 ng-model="newCategory.name">
         </div>
-        <span class="text-danger has-error" ng-show="newCategoryForm.categoryName.$error.required  && submitted"> The category name is required!</span>
+
+        <div class="pull-left" style="display: inline-block;"><span class="text-danger has-error"
+                                                                    ng-show="newCategoryForm.categoryName.$error.required  && submitted"> The category name is required!</span>
+          <span class="text-danger has-error " style="display: inline-block"
+                ng-show="errors.addNewCategory  && submitted" ng-bind="errors.addNewCategory"></span>
+          <span class="text-info" ng-show="addCategoryDone" ng-bind="addCategoryDone"></span>
+        </div>
         <button type="submit" class="btn btn-default pull-right">Save</button>
       </form>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-7">
       <h3>Existing categories</h3>
+      <div class="categories-container">
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="category in categories">
+            {{category.name}}
+            <span class="pull-right ">
+              <a href="#"><span class="glyphicon glyphicon-remove-sign categories-edit-icons"
+                                data-toggle="tooltip" data-placement="left" title="Remove"
+                          ng-click="showAskDeleteConfirm(category)"></span> </a>
+            </span>
+             <span class="pull-right">
+              <a href="#">
+                <span class="glyphicon glyphicon-edit categories-edit-icons" data-toggle="tooltip" data-placement="left" title="Edit"
+                ng-click="showEditForm(category)"></span>
+              </a>
+            </span>
+              <span ng-show="errors.removeCategory" class="text-danger pull-right margin-right-5">You can't remove this category!</span>
+            <i class="clearfix"/>
+              <div ng-show="category.showEdit">
+                <input type="text" ng-model="category.name" placeholder="Category's name">
+                <button class="btn btn-default btn-sm" ng-click="resetCategoryView(category)">Cancel</button>
+                <button class="btn btn-sm btn-primary" ng-click="updateCategory(category)">Update</button>
+              </div>
+              <div ng-show="category.askDeleteConfirm">
+                <span>Are you sure you want to delete this category?</span>
+                <button class="btn btn-sm btn-primary" ng-click="removeCategory(category)">Yes</button>
+                <button class="btn btn-default btn-sm" ng-click="resetCategoryView(category)">No</button>
+              </div>
+              <div ng-show="category.errors.deleteCategory" >
+                <span class="text-danger" ng-bind="category.errors.deleteCategory"></span>
+              </div>
+          </li>
+        </ul>
+      </div>
       <span ng-show="categories && categories.length == 0 "> No category exist yet!</span>
-      <div class="text-danger" ng-show="errors.getCategories" ng-bind="errors.getCategories" style=" word-wrap: break-word;"></div>
+      <div class="text-danger" ng-show="errors.getCategories" ng-bind="errors.getCategories"
+           style=" word-wrap: break-word;"></div>
     </div>
-
   </div>
-  <!--<ul>-->
-    <!--<li ng-repeat="item in items">-->
-      <!--<a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>-->
-    <!--</li>-->
-  <!--</ul>-->
-  <!--Selected: <b>{{ selected.item }}</b>-->
 </div>
 <div class="modal-footer">
-  <!--<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>-->
   <button class="btn btn-warning" type="button" ng-click="cancel()">Close</button>
 </div>

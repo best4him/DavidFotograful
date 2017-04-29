@@ -29,7 +29,7 @@ var all = {
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
-    session: 'acrawler-secret'
+    session: 'davidfotograful-secret'
   },
 
   // List of user roles
@@ -43,7 +43,6 @@ var all = {
       }
     }
   },
-
 };
 
 // Export the config object based on the NODE_ENV

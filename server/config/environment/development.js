@@ -5,7 +5,12 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/acrawler-dev'
+    uri: 'mongodb://localhost/DavidFotograful'
+  },
+  aws: {
+    region: "eu-central-1",
+    accessKeyId: "",
+    secretAccessKey: ""
   },
 
   seedDB: false

@@ -11,9 +11,10 @@
   factoryName.$inject = ['$http'];
 
   /* @ngInject */
-  function factoryName($http, $q) {
+  function factoryName($http) {
     var service = {
-      verifyPermalink: verifyPermalink
+      verifyPermalink: verifyPermalink,
+      addNewPost: addNewPost,
     };
     return service;
 
@@ -23,9 +24,14 @@
       return $http.get('/api/posts/verifyPermalink', {params: {permalink: permalink}}).then(function(response) {
         return response.data;
       })
+    }
 
+    function addNewPost(post) {
+      return $http.post('/api/posts/', post)
+        .then(function(response) {
+          return response.data;
+        })
     }
   }
 
 })();
-

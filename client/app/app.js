@@ -8,9 +8,12 @@ angular.module('davidFotograful', [
   'ui.router',
   'ui.bootstrap',
   'timer',
-  'davidFotograful.dashboard',
   'ncy-angular-breadcrumb',
-  'ui.select'
+  'ui.select',
+  'textAngular',
+  'angularFileUpload',
+  'davidFotograful.dashboard',
+  'tags'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

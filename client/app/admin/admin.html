@@ -34,25 +34,19 @@
 
     <div id="page-content-wrapper">
 
+      <div ncy-breadcrumb></div>
       <div class="container-fluid" style="display: inline-block; width: 90%;">
         <!--<a href="#"><span class="glyphicon glyphicon-menu-hamburger icon-item-toggle" aria-hidden="true"-->
                           <!--ng-click="toggleLeftBar = !toggleLeftBar"></span></a>-->
-          <button class="c-hamburger c-hamburger--htla no-display-large-screen"" ng-class="{'is-active':toggleLeftBar}" ng-click="toggleLeftBar = !toggleLeftBar">
+          <button class="c-hamburger c-hamburger--htla no-display-large-screen" ng-class="{'is-active':toggleLeftBar}" ng-click="toggleLeftBar = !toggleLeftBar">
             <span>toggle menu</span>
           </button>
 
-          <div class="margin-left-5" ncy-breadcrumb></div>
 
         <div class="row">
           <div class="col-lg-12">
 
             <div class = "main-content" ui-view=""></div>
-            <!--<h1>Simple Sidebar</h1>-->
-            <!--<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens,-->
-              <!--and will appear non-collapsed on larger screens. When toggled using the button below, the menu will-->
-              <!--appear/disappear. On small screens, the page content will be pushed off canvas.</p>-->
-            <!--<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>-->
-            <!--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>-->
           </div>
         </div>
       </div>

@@ -17,3 +17,20 @@
     width: 90%;
   }
 }
+.categories-container {
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.categories-edit-icons {
+  margin-right: 4px;
+  font-size: 18px;
+}
+.margin-right-5 {
+  margin-right: 4px;
+}
+
+.coverImage {
+  width: auto;
+  height: 150px;
+}

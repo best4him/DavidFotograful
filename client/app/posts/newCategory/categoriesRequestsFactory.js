@@ -14,7 +14,9 @@
   function CategoriesXHRFactory($http) {
     var service = {
       getCategories: getCategories,
-      addCategory: addCategory
+      addCategory: addCategory,
+      deleteCategory: deleteCategory,
+      updateCategory:updateCategory
     };
     return service;
 
@@ -27,6 +29,16 @@
     }
     function addCategory(category) {
       return $http.post('api/categories', category).then(function(response) {
+        return response.data;
+      })
+    }
+    function deleteCategory(category) {
+      return $http.delete('api/categories/' + category._id).then(function(response) {
+        return response.data;
+      })
+    }
+    function updateCategory(category) {
+      return $http.put('api/categories/'+ category._id, category ).then(function(response) {
         return response.data;
       })
     }

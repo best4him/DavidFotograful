@@ -12,6 +12,7 @@ module.exports = function(app) {
   // Insert routes below
   app.use('/api/posts', require('./api/posts'));
   app.use('/api/users', require('./api/user'));
+  app.use('/api/tags', require('./api/tags'));
   app.use('/api/categories', require('./api/posts/categories'));
 
   app.use('/auth', require('./auth'));

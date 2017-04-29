@@ -1,7 +1,27 @@
 <h2 class="no-top-margin">Add New Post</h2>
 <div class="container">
   <form class="form-horizontal" name="newPostForm" ng-submit="savePost(newPostForm)" role="form" novalidate>
-    <div class="form-group">
+    <div class="form-group" style="height: 150px">
+      <label class="control-label col-sm-2" for="title">Cover Picture:</label>
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-md-4">
+            <div ng-show="uploaderCover.isHTML5">
+              <!-- 3. nv-file-over uploader="link" over-class="className" -->
+              <div class="well my-drop-zone" nv-file-over="" uploader="uploaderCover">
+                Drop cover picture
+              </div>
+              <input type="file" nv-file-select="" uploader="uploaderCover" /><br/>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <img class="coverImage" src="http://daintyndelightful.com/wp-content/uploads/2014/10/gandalf-the-lord-of-the-rings-16472-600x374.jpg">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group clearfix">
       <label class="control-label col-sm-2" for="title">Title*:</label>
       <div class="col-sm-8">
         <input type="text" class="form-control" id="title" name="title" placeholder="Enter post's title" required
@@ -12,14 +32,14 @@
           Please enter title for your post.
         </p>
         <div class="row grey-color below-input-post">
-          <div class="" ng-show="newPost.permLink.length > 0">
+          <div class="" ng-show="newPost.permalink.length > 0">
             <span>Permalink: </span>
-            <span ng-bind="newPost.permLink"></span>
+            <span ng-bind="newPost.permalink"></span>
             <span ng-show="permalinkStates.isPermalinkValid" class="glyphicon glyphicon-ok margin-left-5"></span>
             <span ng-show="permalinkStates.isPermalinkValid === false"
                   class="glyphicon glyphicon-remove margin-left-5"></span>
             <span ng-show="permalinkStates.loading" class="fa fa-spinner fa-pulse fa-fw"></span>
-            <span class="sr-only">Loading...</span>
+            <span ng-show="permalinkStates.loading" class="sr-only">Loading...</span>
           </div>
         </div>
         <div class="text-danger" ng-show="permalinkStates.error" ng-bind="permalinkStates.error"></div>
@@ -27,17 +47,17 @@
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="category">Category:</label>
+      <label class="control-label col-sm-2" for="category">Category:{{ctrl}}</label>
       <div class="col-sm-8">
+
         <!--<input type="text" class="form-control" id="category" placeholder="Enter post's category">-->
         <div class="input-container-medium">
-          <ui-select multiple sortable="true" id="category" ng-model="ctrl" class="form-control"
+          <ui-select multiple sortable="true" id="category" ng-model="newPost.categories" class="form-control"
                      title="Choose a person">
-            <ui-select-match placeholder="Select or search a person in the list...">{{$select.selected[0].name}}
+            <ui-select-match placeholder="Select or search a category in the list...">{{$select.selected[$index].name}}
             </ui-select-match>
-            <ui-select-choices repeat="item in people | filter: $select.search">
+            <ui-select-choices repeat="item._id as item in categories | filter: $select.search">
               <div ng-bind-html="item.name | highlight: $select.search"></div>
-              <small ng-bind-html="item.email | highlight: $select.search"></small>
             </ui-select-choices>
           </ui-select>
         </div>
@@ -49,30 +69,85 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="tags">Tags:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="tags" placeholder="Enter post's tags">
+        <ui-select multiple tagging  tagging-label="(custom 'new' tag)"  ng-model="newPost.tags" theme="bootstrap" sortable="true"
+                   title="Enter post's tags">
+          <ui-select-match placeholder="Enter post's tags" id="tags">{{$item}}</ui-select-match>
+          <ui-select-choices repeat="tag in tags| filter:$select.search">
+            {{tag}}
+          </ui-select-choices>
+        </ui-select>
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-sm-2" for="synopsis">Synopsis:</label>
       <div class="col-sm-8">
-        <textarea rows="12" class="form-control" id="synopsis" placeholder="Enter post's synopsis"></textarea>
+        <text-angular ng-model="newPost.synopsis"  id="synopsis" placeholder="Enter post's synopsis"></text-angular>
       </div>
     </div>
-    <div class="form-group has-error">
-      <p class="help-block" ng-show="!newPostForm.$valid &&  submitted">Please provide all required information before
-        saving the new post!</p>
-    </div>
+
     <div class="form-group">
-      <button class="btn btn-inverse">
-        Cancel
-      </button>
-      <button class="btn btn-inverse" type="submit">
-        Save
-      </button>
-      <button class="btn btn-inverse">
-        Publish
-      </button>
+     <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <div class="row">
+
+            <div class="col-sm-6">
+              <div ng-show="uploaderResources.isHTML5">
+                <div nv-file-drop="" uploader="uploaderResources">
+                  <div nv-file-over="" uploader="uploaderResources" over-class="another-file-over-class" class="well my-drop-zone">
+                    Drop pictures or movies
+                  </div>
+                </div>
+              </div>
+              <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+              <!--<input type="file" nv-file-select="" uploaderResources="uploader" multiple  /><br/>-->
+            </div>
+          <div class="col-sm-6">
+            <img class="coverImage" src="http://daintyndelightful.com/wp-content/uploads/2014/10/gandalf-the-lord-of-the-rings-16472-600x374.jpg">
+          </div>
+
+      </div>
+    </div>
+
+    <div class="col-sm-10">
+      <div class="form-group pull-right col-sm-10">
+        <div style="min-height: 30px">
+          <div class="form-group has-error">
+            <div  class="alert alert-danger alert-dismissible"role="alert" ng-show="!newPostForm.$valid &&  submitted">
+              <span >Please provide all required information before  saving the new post!</span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+
+            <div  class="alert alert-danger alert-dismissible"role="alert" ng-show="newPostStates.error">
+              <span >An error has occurred! Please try again!</span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div  class="alert alert-success alert-dismissible"role="alert"  ng-show="newPostStates.success">
+              <span >The new post has been saved successfully!</span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="pull-right">
+          <button class="btn btn-inverse">
+            Cancel
+          </button>
+          <button class="btn btn-inverse" type="submit">
+            Save
+            <span   ng-show="newPostStates.loading" class="fa fa-spinner fa-pulse fa-fw"></span>
+            <span ng-show="newPostStates.loading" class="sr-only">Loading...</span>
+          </button>
+          <button class="btn btn-inverse" ng-show="false">
+            Publish
+            <span class="fa fa-spinner fa-pulse fa-fw"></span>
+            <span ng-show="statusNewPost.loading" class="sr-only">Loading...</span>
+          </button>
+        </div>
+      </div>
+    </div>
     </div>
   </form>
 </div>
